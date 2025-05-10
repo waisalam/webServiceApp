@@ -21,7 +21,7 @@ export default function SigninPage() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role: "User",
+    role: "",
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -32,18 +32,29 @@ export default function SigninPage() {
     setLoading(true);
     setMessage("");
     try {
-      const response = await axios.post("/api/users/login", formData);
-      if (response.status === 200 || response.status === 201) {
-        setMessage("Login successful! Redirecting...");
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 1500);
-      }
+     if(formData.role === "ADMIN") {
+      console.log("logging in as admin");
+      
+        const response = await axios.post("/api/admin/login", formData);
+     if(response.status === 201) {
+            setMessage(response.data.message);
+        localStorage.setItem("adminToken", response.data.token);
+        localStorage.setItem("role", formData.role);
+        router.push("/dashboard");
+        }
+      } else {
+        console.log("logging in as user");
+        const response = await axios.post("/api/users/login", formData);
+        if (response.status === 201) {
+          setMessage(response.data.message);
+        router.push("/dashboard");
+      }}
     } catch (err: any) {
       setMessage(err.response?.data || "Login failed. Please try again.");
     }
     setLoading(false);
   };
+
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-6">
@@ -72,7 +83,7 @@ export default function SigninPage() {
                 I am logging in as
               </legend>
               <div className="grid grid-cols-2 gap-4 mt-2">
-                {["Admin", "HR", "User", "Developer"].map((r) => (
+                {["ADMIN", "HR", "User", "Developer"].map((r) => (
                   <label
                     key={r}
                     className="flex items-center space-x-3 bg-gray-800/60 p-4 rounded-lg border border-gray-700 hover:border-white transition"
