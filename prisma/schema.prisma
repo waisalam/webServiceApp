@@ -42,15 +42,28 @@ model Hr{
   createdAt DateTime @default(now())
 }
 
-model organization{
-  id Int @id 
-  orgName String @unique
-  orgDesc String @unique
-  image1 String?
-  image2 String?
-  figmaFile String?
-  figmaLink String?
+model Organization {
+  id               String   @id @default(cuid())
+  name             String @unique
+  description      String
+  industry         String
+  website          String? @default("")
+  location         String? @default("")
+  foundedYear      Int? @default(2025)
+  contactEmail     String
+  phoneNumber      String? @default("")
+  teamSize         Int
+  socialLinks      String?  @default("")
+  figmaLink        String? @default("")
+  domainName       String? @default("")
+  needWebsite      Boolean  @default(false)
+  goals            String? @default("")
+  mission          String? @default("")
+  specificFeatures String? @default("")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
+
 
 
 

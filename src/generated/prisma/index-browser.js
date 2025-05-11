@@ -150,12 +150,24 @@ exports.Prisma.HrScalarFieldEnum = {
 
 exports.Prisma.OrganizationScalarFieldEnum = {
   id: 'id',
-  orgName: 'orgName',
-  orgDesc: 'orgDesc',
-  image1: 'image1',
-  image2: 'image2',
-  figmaFile: 'figmaFile',
-  figmaLink: 'figmaLink'
+  name: 'name',
+  description: 'description',
+  industry: 'industry',
+  website: 'website',
+  location: 'location',
+  foundedYear: 'foundedYear',
+  contactEmail: 'contactEmail',
+  phoneNumber: 'phoneNumber',
+  teamSize: 'teamSize',
+  socialLinks: 'socialLinks',
+  figmaLink: 'figmaLink',
+  domainName: 'domainName',
+  needWebsite: 'needWebsite',
+  goals: 'goals',
+  mission: 'mission',
+  specificFeatures: 'specificFeatures',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -178,7 +190,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   admin: 'admin',
   Hr: 'Hr',
-  organization: 'organization'
+  Organization: 'Organization'
 };
 
 /**
