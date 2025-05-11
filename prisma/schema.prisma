@@ -33,4 +33,25 @@ model admin {
   role String @default("ADMIN")
 }
 
+model Hr{
+  id String @id @default(cuid())
+  name String
+  email String @unique
+  password String
+  role String @default("HR")
+  createdAt DateTime @default(now())
+}
+
+model organization{
+  id Int @id 
+  orgName String @unique
+  orgDesc String @unique
+  image1 String?
+  image2 String?
+  figmaFile String?
+  figmaLink String?
+}
+
+
+
 

@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import jwt from 'jsonwebtoken'
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -16,9 +17,11 @@ export async function POST(req: Request) {
   if (!comparePassword) {
     return new Response("Wrong Password please try again ", { status: 401 });
   }
+ const secterJWT = process.env.JWT_SECRET || 'fsdajoigsd54g8sd45631sd5fsd';
 
+    const token = jwt.sign({email, role: user.role}, secterJWT)
   return new Response(
-    JSON.stringify({ message: "user logged in Successfully" }),
+    JSON.stringify({ message: "user logged in Successfully", token }),
     { status: 201 }
   );
 }

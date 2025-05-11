@@ -139,6 +139,25 @@ exports.Prisma.AdminScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.HrScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OrganizationScalarFieldEnum = {
+  id: 'id',
+  orgName: 'orgName',
+  orgDesc: 'orgDesc',
+  image1: 'image1',
+  image2: 'image2',
+  figmaFile: 'figmaFile',
+  figmaLink: 'figmaLink'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -157,7 +176,9 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  admin: 'admin'
+  admin: 'admin',
+  Hr: 'Hr',
+  organization: 'organization'
 };
 
 /**

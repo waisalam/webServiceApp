@@ -23,6 +23,16 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type admin = $Result.DefaultSelection<Prisma.$adminPayload>
+/**
+ * Model Hr
+ * 
+ */
+export type Hr = $Result.DefaultSelection<Prisma.$HrPayload>
+/**
+ * Model organization
+ * 
+ */
+export type organization = $Result.DefaultSelection<Prisma.$organizationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +178,26 @@ export class PrismaClient<
     * ```
     */
   get admin(): Prisma.adminDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hr`: Exposes CRUD operations for the **Hr** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hrs
+    * const hrs = await prisma.hr.findMany()
+    * ```
+    */
+  get hr(): Prisma.HrDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.organization`: Exposes CRUD operations for the **organization** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Organizations
+    * const organizations = await prisma.organization.findMany()
+    * ```
+    */
+  get organization(): Prisma.organizationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +639,9 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    admin: 'admin'
+    admin: 'admin',
+    Hr: 'Hr',
+    organization: 'organization'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "admin"
+      modelProps: "user" | "admin" | "hr" | "organization"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +812,154 @@ export namespace Prisma {
           }
         }
       }
+      Hr: {
+        payload: Prisma.$HrPayload<ExtArgs>
+        fields: Prisma.HrFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HrFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HrFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>
+          }
+          findFirst: {
+            args: Prisma.HrFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HrFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>
+          }
+          findMany: {
+            args: Prisma.HrFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>[]
+          }
+          create: {
+            args: Prisma.HrCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>
+          }
+          createMany: {
+            args: Prisma.HrCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HrCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>[]
+          }
+          delete: {
+            args: Prisma.HrDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>
+          }
+          update: {
+            args: Prisma.HrUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>
+          }
+          deleteMany: {
+            args: Prisma.HrDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HrUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HrUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>[]
+          }
+          upsert: {
+            args: Prisma.HrUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HrPayload>
+          }
+          aggregate: {
+            args: Prisma.HrAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHr>
+          }
+          groupBy: {
+            args: Prisma.HrGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HrGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HrCountArgs<ExtArgs>
+            result: $Utils.Optional<HrCountAggregateOutputType> | number
+          }
+        }
+      }
+      organization: {
+        payload: Prisma.$organizationPayload<ExtArgs>
+        fields: Prisma.organizationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.organizationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.organizationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>
+          }
+          findFirst: {
+            args: Prisma.organizationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.organizationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>
+          }
+          findMany: {
+            args: Prisma.organizationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>[]
+          }
+          create: {
+            args: Prisma.organizationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>
+          }
+          createMany: {
+            args: Prisma.organizationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.organizationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>[]
+          }
+          delete: {
+            args: Prisma.organizationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>
+          }
+          update: {
+            args: Prisma.organizationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>
+          }
+          deleteMany: {
+            args: Prisma.organizationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.organizationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.organizationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>[]
+          }
+          upsert: {
+            args: Prisma.organizationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$organizationPayload>
+          }
+          aggregate: {
+            args: Prisma.OrganizationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOrganization>
+          }
+          groupBy: {
+            args: Prisma.organizationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OrganizationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.organizationCountArgs<ExtArgs>
+            result: $Utils.Optional<OrganizationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +1046,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     admin?: adminOmit
+    hr?: HrOmit
+    organization?: organizationOmit
   }
 
   /* Types for Logging */
@@ -2990,6 +3172,2069 @@ export namespace Prisma {
 
 
   /**
+   * Model Hr
+   */
+
+  export type AggregateHr = {
+    _count: HrCountAggregateOutputType | null
+    _min: HrMinAggregateOutputType | null
+    _max: HrMaxAggregateOutputType | null
+  }
+
+  export type HrMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    email: string | null
+    password: string | null
+    role: string | null
+    createdAt: Date | null
+  }
+
+  export type HrMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    email: string | null
+    password: string | null
+    role: string | null
+    createdAt: Date | null
+  }
+
+  export type HrCountAggregateOutputType = {
+    id: number
+    name: number
+    email: number
+    password: number
+    role: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type HrMinAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    password?: true
+    role?: true
+    createdAt?: true
+  }
+
+  export type HrMaxAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    password?: true
+    role?: true
+    createdAt?: true
+  }
+
+  export type HrCountAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    password?: true
+    role?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type HrAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hr to aggregate.
+     */
+    where?: HrWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hrs to fetch.
+     */
+    orderBy?: HrOrderByWithRelationInput | HrOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HrWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hrs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hrs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Hrs
+    **/
+    _count?: true | HrCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HrMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HrMaxAggregateInputType
+  }
+
+  export type GetHrAggregateType<T extends HrAggregateArgs> = {
+        [P in keyof T & keyof AggregateHr]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHr[P]>
+      : GetScalarType<T[P], AggregateHr[P]>
+  }
+
+
+
+
+  export type HrGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HrWhereInput
+    orderBy?: HrOrderByWithAggregationInput | HrOrderByWithAggregationInput[]
+    by: HrScalarFieldEnum[] | HrScalarFieldEnum
+    having?: HrScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HrCountAggregateInputType | true
+    _min?: HrMinAggregateInputType
+    _max?: HrMaxAggregateInputType
+  }
+
+  export type HrGroupByOutputType = {
+    id: string
+    name: string
+    email: string
+    password: string
+    role: string
+    createdAt: Date
+    _count: HrCountAggregateOutputType | null
+    _min: HrMinAggregateOutputType | null
+    _max: HrMaxAggregateOutputType | null
+  }
+
+  type GetHrGroupByPayload<T extends HrGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HrGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HrGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HrGroupByOutputType[P]>
+            : GetScalarType<T[P], HrGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HrSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    password?: boolean
+    role?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hr"]>
+
+  export type HrSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    password?: boolean
+    role?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hr"]>
+
+  export type HrSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    password?: boolean
+    role?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hr"]>
+
+  export type HrSelectScalar = {
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    password?: boolean
+    role?: boolean
+    createdAt?: boolean
+  }
+
+  export type HrOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "createdAt", ExtArgs["result"]["hr"]>
+
+  export type $HrPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Hr"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      email: string
+      password: string
+      role: string
+      createdAt: Date
+    }, ExtArgs["result"]["hr"]>
+    composites: {}
+  }
+
+  type HrGetPayload<S extends boolean | null | undefined | HrDefaultArgs> = $Result.GetResult<Prisma.$HrPayload, S>
+
+  type HrCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HrFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HrCountAggregateInputType | true
+    }
+
+  export interface HrDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Hr'], meta: { name: 'Hr' } }
+    /**
+     * Find zero or one Hr that matches the filter.
+     * @param {HrFindUniqueArgs} args - Arguments to find a Hr
+     * @example
+     * // Get one Hr
+     * const hr = await prisma.hr.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HrFindUniqueArgs>(args: SelectSubset<T, HrFindUniqueArgs<ExtArgs>>): Prisma__HrClient<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hr that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HrFindUniqueOrThrowArgs} args - Arguments to find a Hr
+     * @example
+     * // Get one Hr
+     * const hr = await prisma.hr.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HrFindUniqueOrThrowArgs>(args: SelectSubset<T, HrFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HrClient<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hr that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HrFindFirstArgs} args - Arguments to find a Hr
+     * @example
+     * // Get one Hr
+     * const hr = await prisma.hr.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HrFindFirstArgs>(args?: SelectSubset<T, HrFindFirstArgs<ExtArgs>>): Prisma__HrClient<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hr that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HrFindFirstOrThrowArgs} args - Arguments to find a Hr
+     * @example
+     * // Get one Hr
+     * const hr = await prisma.hr.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HrFindFirstOrThrowArgs>(args?: SelectSubset<T, HrFindFirstOrThrowArgs<ExtArgs>>): Prisma__HrClient<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hrs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HrFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hrs
+     * const hrs = await prisma.hr.findMany()
+     * 
+     * // Get first 10 Hrs
+     * const hrs = await prisma.hr.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hrWithIdOnly = await prisma.hr.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HrFindManyArgs>(args?: SelectSubset<T, HrFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hr.
+     * @param {HrCreateArgs} args - Arguments to create a Hr.
+     * @example
+     * // Create one Hr
+     * const Hr = await prisma.hr.create({
+     *   data: {
+     *     // ... data to create a Hr
+     *   }
+     * })
+     * 
+     */
+    create<T extends HrCreateArgs>(args: SelectSubset<T, HrCreateArgs<ExtArgs>>): Prisma__HrClient<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hrs.
+     * @param {HrCreateManyArgs} args - Arguments to create many Hrs.
+     * @example
+     * // Create many Hrs
+     * const hr = await prisma.hr.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HrCreateManyArgs>(args?: SelectSubset<T, HrCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hrs and returns the data saved in the database.
+     * @param {HrCreateManyAndReturnArgs} args - Arguments to create many Hrs.
+     * @example
+     * // Create many Hrs
+     * const hr = await prisma.hr.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hrs and only return the `id`
+     * const hrWithIdOnly = await prisma.hr.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HrCreateManyAndReturnArgs>(args?: SelectSubset<T, HrCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hr.
+     * @param {HrDeleteArgs} args - Arguments to delete one Hr.
+     * @example
+     * // Delete one Hr
+     * const Hr = await prisma.hr.delete({
+     *   where: {
+     *     // ... filter to delete one Hr
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HrDeleteArgs>(args: SelectSubset<T, HrDeleteArgs<ExtArgs>>): Prisma__HrClient<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hr.
+     * @param {HrUpdateArgs} args - Arguments to update one Hr.
+     * @example
+     * // Update one Hr
+     * const hr = await prisma.hr.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HrUpdateArgs>(args: SelectSubset<T, HrUpdateArgs<ExtArgs>>): Prisma__HrClient<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hrs.
+     * @param {HrDeleteManyArgs} args - Arguments to filter Hrs to delete.
+     * @example
+     * // Delete a few Hrs
+     * const { count } = await prisma.hr.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HrDeleteManyArgs>(args?: SelectSubset<T, HrDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hrs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HrUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hrs
+     * const hr = await prisma.hr.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HrUpdateManyArgs>(args: SelectSubset<T, HrUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hrs and returns the data updated in the database.
+     * @param {HrUpdateManyAndReturnArgs} args - Arguments to update many Hrs.
+     * @example
+     * // Update many Hrs
+     * const hr = await prisma.hr.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hrs and only return the `id`
+     * const hrWithIdOnly = await prisma.hr.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HrUpdateManyAndReturnArgs>(args: SelectSubset<T, HrUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hr.
+     * @param {HrUpsertArgs} args - Arguments to update or create a Hr.
+     * @example
+     * // Update or create a Hr
+     * const hr = await prisma.hr.upsert({
+     *   create: {
+     *     // ... data to create a Hr
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hr we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HrUpsertArgs>(args: SelectSubset<T, HrUpsertArgs<ExtArgs>>): Prisma__HrClient<$Result.GetResult<Prisma.$HrPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hrs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HrCountArgs} args - Arguments to filter Hrs to count.
+     * @example
+     * // Count the number of Hrs
+     * const count = await prisma.hr.count({
+     *   where: {
+     *     // ... the filter for the Hrs we want to count
+     *   }
+     * })
+    **/
+    count<T extends HrCountArgs>(
+      args?: Subset<T, HrCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HrCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hr.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HrAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HrAggregateArgs>(args: Subset<T, HrAggregateArgs>): Prisma.PrismaPromise<GetHrAggregateType<T>>
+
+    /**
+     * Group by Hr.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HrGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HrGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HrGroupByArgs['orderBy'] }
+        : { orderBy?: HrGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HrGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHrGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Hr model
+   */
+  readonly fields: HrFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Hr.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HrClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Hr model
+   */
+  interface HrFieldRefs {
+    readonly id: FieldRef<"Hr", 'String'>
+    readonly name: FieldRef<"Hr", 'String'>
+    readonly email: FieldRef<"Hr", 'String'>
+    readonly password: FieldRef<"Hr", 'String'>
+    readonly role: FieldRef<"Hr", 'String'>
+    readonly createdAt: FieldRef<"Hr", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Hr findUnique
+   */
+  export type HrFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * Filter, which Hr to fetch.
+     */
+    where: HrWhereUniqueInput
+  }
+
+  /**
+   * Hr findUniqueOrThrow
+   */
+  export type HrFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * Filter, which Hr to fetch.
+     */
+    where: HrWhereUniqueInput
+  }
+
+  /**
+   * Hr findFirst
+   */
+  export type HrFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * Filter, which Hr to fetch.
+     */
+    where?: HrWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hrs to fetch.
+     */
+    orderBy?: HrOrderByWithRelationInput | HrOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Hrs.
+     */
+    cursor?: HrWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hrs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hrs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hrs.
+     */
+    distinct?: HrScalarFieldEnum | HrScalarFieldEnum[]
+  }
+
+  /**
+   * Hr findFirstOrThrow
+   */
+  export type HrFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * Filter, which Hr to fetch.
+     */
+    where?: HrWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hrs to fetch.
+     */
+    orderBy?: HrOrderByWithRelationInput | HrOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Hrs.
+     */
+    cursor?: HrWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hrs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hrs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hrs.
+     */
+    distinct?: HrScalarFieldEnum | HrScalarFieldEnum[]
+  }
+
+  /**
+   * Hr findMany
+   */
+  export type HrFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * Filter, which Hrs to fetch.
+     */
+    where?: HrWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hrs to fetch.
+     */
+    orderBy?: HrOrderByWithRelationInput | HrOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Hrs.
+     */
+    cursor?: HrWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hrs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hrs.
+     */
+    skip?: number
+    distinct?: HrScalarFieldEnum | HrScalarFieldEnum[]
+  }
+
+  /**
+   * Hr create
+   */
+  export type HrCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Hr.
+     */
+    data: XOR<HrCreateInput, HrUncheckedCreateInput>
+  }
+
+  /**
+   * Hr createMany
+   */
+  export type HrCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Hrs.
+     */
+    data: HrCreateManyInput | HrCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hr createManyAndReturn
+   */
+  export type HrCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * The data used to create many Hrs.
+     */
+    data: HrCreateManyInput | HrCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hr update
+   */
+  export type HrUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Hr.
+     */
+    data: XOR<HrUpdateInput, HrUncheckedUpdateInput>
+    /**
+     * Choose, which Hr to update.
+     */
+    where: HrWhereUniqueInput
+  }
+
+  /**
+   * Hr updateMany
+   */
+  export type HrUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Hrs.
+     */
+    data: XOR<HrUpdateManyMutationInput, HrUncheckedUpdateManyInput>
+    /**
+     * Filter which Hrs to update
+     */
+    where?: HrWhereInput
+    /**
+     * Limit how many Hrs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hr updateManyAndReturn
+   */
+  export type HrUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * The data used to update Hrs.
+     */
+    data: XOR<HrUpdateManyMutationInput, HrUncheckedUpdateManyInput>
+    /**
+     * Filter which Hrs to update
+     */
+    where?: HrWhereInput
+    /**
+     * Limit how many Hrs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hr upsert
+   */
+  export type HrUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Hr to update in case it exists.
+     */
+    where: HrWhereUniqueInput
+    /**
+     * In case the Hr found by the `where` argument doesn't exist, create a new Hr with this data.
+     */
+    create: XOR<HrCreateInput, HrUncheckedCreateInput>
+    /**
+     * In case the Hr was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HrUpdateInput, HrUncheckedUpdateInput>
+  }
+
+  /**
+   * Hr delete
+   */
+  export type HrDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+    /**
+     * Filter which Hr to delete.
+     */
+    where: HrWhereUniqueInput
+  }
+
+  /**
+   * Hr deleteMany
+   */
+  export type HrDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hrs to delete
+     */
+    where?: HrWhereInput
+    /**
+     * Limit how many Hrs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hr without action
+   */
+  export type HrDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hr
+     */
+    select?: HrSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hr
+     */
+    omit?: HrOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model organization
+   */
+
+  export type AggregateOrganization = {
+    _count: OrganizationCountAggregateOutputType | null
+    _avg: OrganizationAvgAggregateOutputType | null
+    _sum: OrganizationSumAggregateOutputType | null
+    _min: OrganizationMinAggregateOutputType | null
+    _max: OrganizationMaxAggregateOutputType | null
+  }
+
+  export type OrganizationAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type OrganizationSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type OrganizationMinAggregateOutputType = {
+    id: number | null
+    orgName: string | null
+    orgDesc: string | null
+    image1: string | null
+    image2: string | null
+    figmaFile: string | null
+    figmaLink: string | null
+  }
+
+  export type OrganizationMaxAggregateOutputType = {
+    id: number | null
+    orgName: string | null
+    orgDesc: string | null
+    image1: string | null
+    image2: string | null
+    figmaFile: string | null
+    figmaLink: string | null
+  }
+
+  export type OrganizationCountAggregateOutputType = {
+    id: number
+    orgName: number
+    orgDesc: number
+    image1: number
+    image2: number
+    figmaFile: number
+    figmaLink: number
+    _all: number
+  }
+
+
+  export type OrganizationAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type OrganizationSumAggregateInputType = {
+    id?: true
+  }
+
+  export type OrganizationMinAggregateInputType = {
+    id?: true
+    orgName?: true
+    orgDesc?: true
+    image1?: true
+    image2?: true
+    figmaFile?: true
+    figmaLink?: true
+  }
+
+  export type OrganizationMaxAggregateInputType = {
+    id?: true
+    orgName?: true
+    orgDesc?: true
+    image1?: true
+    image2?: true
+    figmaFile?: true
+    figmaLink?: true
+  }
+
+  export type OrganizationCountAggregateInputType = {
+    id?: true
+    orgName?: true
+    orgDesc?: true
+    image1?: true
+    image2?: true
+    figmaFile?: true
+    figmaLink?: true
+    _all?: true
+  }
+
+  export type OrganizationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which organization to aggregate.
+     */
+    where?: organizationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of organizations to fetch.
+     */
+    orderBy?: organizationOrderByWithRelationInput | organizationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: organizationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` organizations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` organizations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned organizations
+    **/
+    _count?: true | OrganizationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OrganizationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OrganizationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrganizationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrganizationMaxAggregateInputType
+  }
+
+  export type GetOrganizationAggregateType<T extends OrganizationAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrganization]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrganization[P]>
+      : GetScalarType<T[P], AggregateOrganization[P]>
+  }
+
+
+
+
+  export type organizationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: organizationWhereInput
+    orderBy?: organizationOrderByWithAggregationInput | organizationOrderByWithAggregationInput[]
+    by: OrganizationScalarFieldEnum[] | OrganizationScalarFieldEnum
+    having?: organizationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrganizationCountAggregateInputType | true
+    _avg?: OrganizationAvgAggregateInputType
+    _sum?: OrganizationSumAggregateInputType
+    _min?: OrganizationMinAggregateInputType
+    _max?: OrganizationMaxAggregateInputType
+  }
+
+  export type OrganizationGroupByOutputType = {
+    id: number
+    orgName: string
+    orgDesc: string
+    image1: string | null
+    image2: string | null
+    figmaFile: string | null
+    figmaLink: string | null
+    _count: OrganizationCountAggregateOutputType | null
+    _avg: OrganizationAvgAggregateOutputType | null
+    _sum: OrganizationSumAggregateOutputType | null
+    _min: OrganizationMinAggregateOutputType | null
+    _max: OrganizationMaxAggregateOutputType | null
+  }
+
+  type GetOrganizationGroupByPayload<T extends organizationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrganizationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrganizationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrganizationGroupByOutputType[P]>
+            : GetScalarType<T[P], OrganizationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type organizationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgName?: boolean
+    orgDesc?: boolean
+    image1?: boolean
+    image2?: boolean
+    figmaFile?: boolean
+    figmaLink?: boolean
+  }, ExtArgs["result"]["organization"]>
+
+  export type organizationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgName?: boolean
+    orgDesc?: boolean
+    image1?: boolean
+    image2?: boolean
+    figmaFile?: boolean
+    figmaLink?: boolean
+  }, ExtArgs["result"]["organization"]>
+
+  export type organizationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orgName?: boolean
+    orgDesc?: boolean
+    image1?: boolean
+    image2?: boolean
+    figmaFile?: boolean
+    figmaLink?: boolean
+  }, ExtArgs["result"]["organization"]>
+
+  export type organizationSelectScalar = {
+    id?: boolean
+    orgName?: boolean
+    orgDesc?: boolean
+    image1?: boolean
+    image2?: boolean
+    figmaFile?: boolean
+    figmaLink?: boolean
+  }
+
+  export type organizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orgName" | "orgDesc" | "image1" | "image2" | "figmaFile" | "figmaLink", ExtArgs["result"]["organization"]>
+
+  export type $organizationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "organization"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      orgName: string
+      orgDesc: string
+      image1: string | null
+      image2: string | null
+      figmaFile: string | null
+      figmaLink: string | null
+    }, ExtArgs["result"]["organization"]>
+    composites: {}
+  }
+
+  type organizationGetPayload<S extends boolean | null | undefined | organizationDefaultArgs> = $Result.GetResult<Prisma.$organizationPayload, S>
+
+  type organizationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<organizationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OrganizationCountAggregateInputType | true
+    }
+
+  export interface organizationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['organization'], meta: { name: 'organization' } }
+    /**
+     * Find zero or one Organization that matches the filter.
+     * @param {organizationFindUniqueArgs} args - Arguments to find a Organization
+     * @example
+     * // Get one Organization
+     * const organization = await prisma.organization.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends organizationFindUniqueArgs>(args: SelectSubset<T, organizationFindUniqueArgs<ExtArgs>>): Prisma__organizationClient<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Organization that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {organizationFindUniqueOrThrowArgs} args - Arguments to find a Organization
+     * @example
+     * // Get one Organization
+     * const organization = await prisma.organization.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends organizationFindUniqueOrThrowArgs>(args: SelectSubset<T, organizationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__organizationClient<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Organization that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {organizationFindFirstArgs} args - Arguments to find a Organization
+     * @example
+     * // Get one Organization
+     * const organization = await prisma.organization.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends organizationFindFirstArgs>(args?: SelectSubset<T, organizationFindFirstArgs<ExtArgs>>): Prisma__organizationClient<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Organization that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {organizationFindFirstOrThrowArgs} args - Arguments to find a Organization
+     * @example
+     * // Get one Organization
+     * const organization = await prisma.organization.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends organizationFindFirstOrThrowArgs>(args?: SelectSubset<T, organizationFindFirstOrThrowArgs<ExtArgs>>): Prisma__organizationClient<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Organizations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {organizationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Organizations
+     * const organizations = await prisma.organization.findMany()
+     * 
+     * // Get first 10 Organizations
+     * const organizations = await prisma.organization.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const organizationWithIdOnly = await prisma.organization.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends organizationFindManyArgs>(args?: SelectSubset<T, organizationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Organization.
+     * @param {organizationCreateArgs} args - Arguments to create a Organization.
+     * @example
+     * // Create one Organization
+     * const Organization = await prisma.organization.create({
+     *   data: {
+     *     // ... data to create a Organization
+     *   }
+     * })
+     * 
+     */
+    create<T extends organizationCreateArgs>(args: SelectSubset<T, organizationCreateArgs<ExtArgs>>): Prisma__organizationClient<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Organizations.
+     * @param {organizationCreateManyArgs} args - Arguments to create many Organizations.
+     * @example
+     * // Create many Organizations
+     * const organization = await prisma.organization.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends organizationCreateManyArgs>(args?: SelectSubset<T, organizationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Organizations and returns the data saved in the database.
+     * @param {organizationCreateManyAndReturnArgs} args - Arguments to create many Organizations.
+     * @example
+     * // Create many Organizations
+     * const organization = await prisma.organization.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Organizations and only return the `id`
+     * const organizationWithIdOnly = await prisma.organization.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends organizationCreateManyAndReturnArgs>(args?: SelectSubset<T, organizationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Organization.
+     * @param {organizationDeleteArgs} args - Arguments to delete one Organization.
+     * @example
+     * // Delete one Organization
+     * const Organization = await prisma.organization.delete({
+     *   where: {
+     *     // ... filter to delete one Organization
+     *   }
+     * })
+     * 
+     */
+    delete<T extends organizationDeleteArgs>(args: SelectSubset<T, organizationDeleteArgs<ExtArgs>>): Prisma__organizationClient<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Organization.
+     * @param {organizationUpdateArgs} args - Arguments to update one Organization.
+     * @example
+     * // Update one Organization
+     * const organization = await prisma.organization.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends organizationUpdateArgs>(args: SelectSubset<T, organizationUpdateArgs<ExtArgs>>): Prisma__organizationClient<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Organizations.
+     * @param {organizationDeleteManyArgs} args - Arguments to filter Organizations to delete.
+     * @example
+     * // Delete a few Organizations
+     * const { count } = await prisma.organization.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends organizationDeleteManyArgs>(args?: SelectSubset<T, organizationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Organizations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {organizationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Organizations
+     * const organization = await prisma.organization.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends organizationUpdateManyArgs>(args: SelectSubset<T, organizationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Organizations and returns the data updated in the database.
+     * @param {organizationUpdateManyAndReturnArgs} args - Arguments to update many Organizations.
+     * @example
+     * // Update many Organizations
+     * const organization = await prisma.organization.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Organizations and only return the `id`
+     * const organizationWithIdOnly = await prisma.organization.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends organizationUpdateManyAndReturnArgs>(args: SelectSubset<T, organizationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Organization.
+     * @param {organizationUpsertArgs} args - Arguments to update or create a Organization.
+     * @example
+     * // Update or create a Organization
+     * const organization = await prisma.organization.upsert({
+     *   create: {
+     *     // ... data to create a Organization
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Organization we want to update
+     *   }
+     * })
+     */
+    upsert<T extends organizationUpsertArgs>(args: SelectSubset<T, organizationUpsertArgs<ExtArgs>>): Prisma__organizationClient<$Result.GetResult<Prisma.$organizationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Organizations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {organizationCountArgs} args - Arguments to filter Organizations to count.
+     * @example
+     * // Count the number of Organizations
+     * const count = await prisma.organization.count({
+     *   where: {
+     *     // ... the filter for the Organizations we want to count
+     *   }
+     * })
+    **/
+    count<T extends organizationCountArgs>(
+      args?: Subset<T, organizationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrganizationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Organization.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganizationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrganizationAggregateArgs>(args: Subset<T, OrganizationAggregateArgs>): Prisma.PrismaPromise<GetOrganizationAggregateType<T>>
+
+    /**
+     * Group by Organization.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {organizationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends organizationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: organizationGroupByArgs['orderBy'] }
+        : { orderBy?: organizationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, organizationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrganizationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the organization model
+   */
+  readonly fields: organizationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for organization.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__organizationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the organization model
+   */
+  interface organizationFieldRefs {
+    readonly id: FieldRef<"organization", 'Int'>
+    readonly orgName: FieldRef<"organization", 'String'>
+    readonly orgDesc: FieldRef<"organization", 'String'>
+    readonly image1: FieldRef<"organization", 'String'>
+    readonly image2: FieldRef<"organization", 'String'>
+    readonly figmaFile: FieldRef<"organization", 'String'>
+    readonly figmaLink: FieldRef<"organization", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * organization findUnique
+   */
+  export type organizationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * Filter, which organization to fetch.
+     */
+    where: organizationWhereUniqueInput
+  }
+
+  /**
+   * organization findUniqueOrThrow
+   */
+  export type organizationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * Filter, which organization to fetch.
+     */
+    where: organizationWhereUniqueInput
+  }
+
+  /**
+   * organization findFirst
+   */
+  export type organizationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * Filter, which organization to fetch.
+     */
+    where?: organizationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of organizations to fetch.
+     */
+    orderBy?: organizationOrderByWithRelationInput | organizationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for organizations.
+     */
+    cursor?: organizationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` organizations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` organizations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of organizations.
+     */
+    distinct?: OrganizationScalarFieldEnum | OrganizationScalarFieldEnum[]
+  }
+
+  /**
+   * organization findFirstOrThrow
+   */
+  export type organizationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * Filter, which organization to fetch.
+     */
+    where?: organizationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of organizations to fetch.
+     */
+    orderBy?: organizationOrderByWithRelationInput | organizationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for organizations.
+     */
+    cursor?: organizationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` organizations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` organizations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of organizations.
+     */
+    distinct?: OrganizationScalarFieldEnum | OrganizationScalarFieldEnum[]
+  }
+
+  /**
+   * organization findMany
+   */
+  export type organizationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * Filter, which organizations to fetch.
+     */
+    where?: organizationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of organizations to fetch.
+     */
+    orderBy?: organizationOrderByWithRelationInput | organizationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing organizations.
+     */
+    cursor?: organizationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` organizations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` organizations.
+     */
+    skip?: number
+    distinct?: OrganizationScalarFieldEnum | OrganizationScalarFieldEnum[]
+  }
+
+  /**
+   * organization create
+   */
+  export type organizationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * The data needed to create a organization.
+     */
+    data: XOR<organizationCreateInput, organizationUncheckedCreateInput>
+  }
+
+  /**
+   * organization createMany
+   */
+  export type organizationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many organizations.
+     */
+    data: organizationCreateManyInput | organizationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * organization createManyAndReturn
+   */
+  export type organizationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * The data used to create many organizations.
+     */
+    data: organizationCreateManyInput | organizationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * organization update
+   */
+  export type organizationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * The data needed to update a organization.
+     */
+    data: XOR<organizationUpdateInput, organizationUncheckedUpdateInput>
+    /**
+     * Choose, which organization to update.
+     */
+    where: organizationWhereUniqueInput
+  }
+
+  /**
+   * organization updateMany
+   */
+  export type organizationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update organizations.
+     */
+    data: XOR<organizationUpdateManyMutationInput, organizationUncheckedUpdateManyInput>
+    /**
+     * Filter which organizations to update
+     */
+    where?: organizationWhereInput
+    /**
+     * Limit how many organizations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * organization updateManyAndReturn
+   */
+  export type organizationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * The data used to update organizations.
+     */
+    data: XOR<organizationUpdateManyMutationInput, organizationUncheckedUpdateManyInput>
+    /**
+     * Filter which organizations to update
+     */
+    where?: organizationWhereInput
+    /**
+     * Limit how many organizations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * organization upsert
+   */
+  export type organizationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * The filter to search for the organization to update in case it exists.
+     */
+    where: organizationWhereUniqueInput
+    /**
+     * In case the organization found by the `where` argument doesn't exist, create a new organization with this data.
+     */
+    create: XOR<organizationCreateInput, organizationUncheckedCreateInput>
+    /**
+     * In case the organization was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<organizationUpdateInput, organizationUncheckedUpdateInput>
+  }
+
+  /**
+   * organization delete
+   */
+  export type organizationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+    /**
+     * Filter which organization to delete.
+     */
+    where: organizationWhereUniqueInput
+  }
+
+  /**
+   * organization deleteMany
+   */
+  export type organizationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which organizations to delete
+     */
+    where?: organizationWhereInput
+    /**
+     * Limit how many organizations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * organization without action
+   */
+  export type organizationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the organization
+     */
+    select?: organizationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the organization
+     */
+    omit?: organizationOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3026,6 +5271,31 @@ export namespace Prisma {
   };
 
   export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+  export const HrScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    password: 'password',
+    role: 'role',
+    createdAt: 'createdAt'
+  };
+
+  export type HrScalarFieldEnum = (typeof HrScalarFieldEnum)[keyof typeof HrScalarFieldEnum]
+
+
+  export const OrganizationScalarFieldEnum: {
+    id: 'id',
+    orgName: 'orgName',
+    orgDesc: 'orgDesc',
+    image1: 'image1',
+    image2: 'image2',
+    figmaFile: 'figmaFile',
+    figmaLink: 'figmaLink'
+  };
+
+  export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3103,6 +5373,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -3226,6 +5510,127 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"admin"> | string
     password?: StringWithAggregatesFilter<"admin"> | string
     role?: StringWithAggregatesFilter<"admin"> | string
+  }
+
+  export type HrWhereInput = {
+    AND?: HrWhereInput | HrWhereInput[]
+    OR?: HrWhereInput[]
+    NOT?: HrWhereInput | HrWhereInput[]
+    id?: StringFilter<"Hr"> | string
+    name?: StringFilter<"Hr"> | string
+    email?: StringFilter<"Hr"> | string
+    password?: StringFilter<"Hr"> | string
+    role?: StringFilter<"Hr"> | string
+    createdAt?: DateTimeFilter<"Hr"> | Date | string
+  }
+
+  export type HrOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HrWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: HrWhereInput | HrWhereInput[]
+    OR?: HrWhereInput[]
+    NOT?: HrWhereInput | HrWhereInput[]
+    name?: StringFilter<"Hr"> | string
+    password?: StringFilter<"Hr"> | string
+    role?: StringFilter<"Hr"> | string
+    createdAt?: DateTimeFilter<"Hr"> | Date | string
+  }, "id" | "email">
+
+  export type HrOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    _count?: HrCountOrderByAggregateInput
+    _max?: HrMaxOrderByAggregateInput
+    _min?: HrMinOrderByAggregateInput
+  }
+
+  export type HrScalarWhereWithAggregatesInput = {
+    AND?: HrScalarWhereWithAggregatesInput | HrScalarWhereWithAggregatesInput[]
+    OR?: HrScalarWhereWithAggregatesInput[]
+    NOT?: HrScalarWhereWithAggregatesInput | HrScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Hr"> | string
+    name?: StringWithAggregatesFilter<"Hr"> | string
+    email?: StringWithAggregatesFilter<"Hr"> | string
+    password?: StringWithAggregatesFilter<"Hr"> | string
+    role?: StringWithAggregatesFilter<"Hr"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Hr"> | Date | string
+  }
+
+  export type organizationWhereInput = {
+    AND?: organizationWhereInput | organizationWhereInput[]
+    OR?: organizationWhereInput[]
+    NOT?: organizationWhereInput | organizationWhereInput[]
+    id?: IntFilter<"organization"> | number
+    orgName?: StringFilter<"organization"> | string
+    orgDesc?: StringFilter<"organization"> | string
+    image1?: StringNullableFilter<"organization"> | string | null
+    image2?: StringNullableFilter<"organization"> | string | null
+    figmaFile?: StringNullableFilter<"organization"> | string | null
+    figmaLink?: StringNullableFilter<"organization"> | string | null
+  }
+
+  export type organizationOrderByWithRelationInput = {
+    id?: SortOrder
+    orgName?: SortOrder
+    orgDesc?: SortOrder
+    image1?: SortOrderInput | SortOrder
+    image2?: SortOrderInput | SortOrder
+    figmaFile?: SortOrderInput | SortOrder
+    figmaLink?: SortOrderInput | SortOrder
+  }
+
+  export type organizationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    orgName?: string
+    orgDesc?: string
+    AND?: organizationWhereInput | organizationWhereInput[]
+    OR?: organizationWhereInput[]
+    NOT?: organizationWhereInput | organizationWhereInput[]
+    image1?: StringNullableFilter<"organization"> | string | null
+    image2?: StringNullableFilter<"organization"> | string | null
+    figmaFile?: StringNullableFilter<"organization"> | string | null
+    figmaLink?: StringNullableFilter<"organization"> | string | null
+  }, "id" | "orgName" | "orgDesc">
+
+  export type organizationOrderByWithAggregationInput = {
+    id?: SortOrder
+    orgName?: SortOrder
+    orgDesc?: SortOrder
+    image1?: SortOrderInput | SortOrder
+    image2?: SortOrderInput | SortOrder
+    figmaFile?: SortOrderInput | SortOrder
+    figmaLink?: SortOrderInput | SortOrder
+    _count?: organizationCountOrderByAggregateInput
+    _avg?: organizationAvgOrderByAggregateInput
+    _max?: organizationMaxOrderByAggregateInput
+    _min?: organizationMinOrderByAggregateInput
+    _sum?: organizationSumOrderByAggregateInput
+  }
+
+  export type organizationScalarWhereWithAggregatesInput = {
+    AND?: organizationScalarWhereWithAggregatesInput | organizationScalarWhereWithAggregatesInput[]
+    OR?: organizationScalarWhereWithAggregatesInput[]
+    NOT?: organizationScalarWhereWithAggregatesInput | organizationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"organization"> | number
+    orgName?: StringWithAggregatesFilter<"organization"> | string
+    orgDesc?: StringWithAggregatesFilter<"organization"> | string
+    image1?: StringNullableWithAggregatesFilter<"organization"> | string | null
+    image2?: StringNullableWithAggregatesFilter<"organization"> | string | null
+    figmaFile?: StringNullableWithAggregatesFilter<"organization"> | string | null
+    figmaLink?: StringNullableWithAggregatesFilter<"organization"> | string | null
   }
 
   export type UserCreateInput = {
@@ -3359,6 +5764,139 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type HrCreateInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    role?: string
+    createdAt?: Date | string
+  }
+
+  export type HrUncheckedCreateInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    role?: string
+    createdAt?: Date | string
+  }
+
+  export type HrUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HrUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HrCreateManyInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    role?: string
+    createdAt?: Date | string
+  }
+
+  export type HrUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HrUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type organizationCreateInput = {
+    id: number
+    orgName: string
+    orgDesc: string
+    image1?: string | null
+    image2?: string | null
+    figmaFile?: string | null
+    figmaLink?: string | null
+  }
+
+  export type organizationUncheckedCreateInput = {
+    id: number
+    orgName: string
+    orgDesc: string
+    image1?: string | null
+    image2?: string | null
+    figmaFile?: string | null
+    figmaLink?: string | null
+  }
+
+  export type organizationUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    orgName?: StringFieldUpdateOperationsInput | string
+    orgDesc?: StringFieldUpdateOperationsInput | string
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    figmaFile?: NullableStringFieldUpdateOperationsInput | string | null
+    figmaLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type organizationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    orgName?: StringFieldUpdateOperationsInput | string
+    orgDesc?: StringFieldUpdateOperationsInput | string
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    figmaFile?: NullableStringFieldUpdateOperationsInput | string | null
+    figmaLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type organizationCreateManyInput = {
+    id: number
+    orgName: string
+    orgDesc: string
+    image1?: string | null
+    image2?: string | null
+    figmaFile?: string | null
+    figmaLink?: string | null
+  }
+
+  export type organizationUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    orgName?: StringFieldUpdateOperationsInput | string
+    orgDesc?: StringFieldUpdateOperationsInput | string
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    figmaFile?: NullableStringFieldUpdateOperationsInput | string | null
+    figmaLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type organizationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    orgName?: StringFieldUpdateOperationsInput | string
+    orgDesc?: StringFieldUpdateOperationsInput | string
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    figmaFile?: NullableStringFieldUpdateOperationsInput | string | null
+    figmaLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3527,6 +6065,98 @@ export namespace Prisma {
     role?: SortOrder
   }
 
+  export type HrCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HrMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HrMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type organizationCountOrderByAggregateInput = {
+    id?: SortOrder
+    orgName?: SortOrder
+    orgDesc?: SortOrder
+    image1?: SortOrder
+    image2?: SortOrder
+    figmaFile?: SortOrder
+    figmaLink?: SortOrder
+  }
+
+  export type organizationAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type organizationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    orgName?: SortOrder
+    orgDesc?: SortOrder
+    image1?: SortOrder
+    image2?: SortOrder
+    figmaFile?: SortOrder
+    figmaLink?: SortOrder
+  }
+
+  export type organizationMinOrderByAggregateInput = {
+    id?: SortOrder
+    orgName?: SortOrder
+    orgDesc?: SortOrder
+    image1?: SortOrder
+    image2?: SortOrder
+    figmaFile?: SortOrder
+    figmaLink?: SortOrder
+  }
+
+  export type organizationSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -3541,6 +6171,14 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3663,6 +6301,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
 

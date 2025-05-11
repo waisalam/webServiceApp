@@ -38,17 +38,28 @@ export default function SigninPage() {
         const response = await axios.post("/api/admin/login", formData);
      if(response.status === 201) {
             setMessage(response.data.message);
-        localStorage.setItem("adminToken", response.data.token);
+        localStorage.setItem("token", response.data.token);
         localStorage.setItem("role", formData.role);
         router.push("/dashboard");
         }
-      } else {
+      } else if (formData.role === "User") {
         console.log("logging in as user");
         const response = await axios.post("/api/users/login", formData);
         if (response.status === 201) {
           setMessage(response.data.message);
-        router.push("/dashboard");
-      }}
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("role", formData.role);
+        router.push("/user-dashboard");
+      }} else if(formData.role === 'HR'){
+        const res = await axios.post('/api/admin/hrlogin', formData)
+        if(res.status === 201){
+          const data = res.data
+          setMessage(data.message)
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('role', formData.role)
+          router.push('/HRdashboard')
+        }
+      }
     } catch (err: any) {
       setMessage(err.response?.data || "Login failed. Please try again.");
     }

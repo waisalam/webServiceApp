@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "hr" ADD COLUMN     "role" TEXT NOT NULL DEFAULT 'HR';

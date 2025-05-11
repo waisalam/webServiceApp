@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     }
     const secterJWT = process.env.JWT_SECRET || 'fsdajoigsd54g8sd45631sd5fsd';
 
-    const token = jwt.sign(email, secterJWT)
-    return new Response(JSON.stringify({ message: 'Admin LoggedIn Successfully' }), { status: 201 })
+    const token = jwt.sign({email, role: existingAdmin.role}, secterJWT)
+    return new Response(JSON.stringify({ message: 'Admin LoggedIn Successfully', token }), { status: 201 })
 
 }
