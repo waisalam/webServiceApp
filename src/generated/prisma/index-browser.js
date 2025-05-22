@@ -132,22 +132,6 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.AdminScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  password: 'password',
-  role: 'role'
-};
-
-exports.Prisma.HrScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  password: 'password',
-  role: 'role',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -188,8 +172,6 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  admin: 'admin',
-  Hr: 'Hr',
   Organization: 'Organization'
 };
 

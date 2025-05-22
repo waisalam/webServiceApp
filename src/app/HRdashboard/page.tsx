@@ -1,27 +1,21 @@
 "use client";
 
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { jwtDecode } from 'jwt-decode'
-import { useEffect, useState } from "react";
 
 export default function HRDashboard() {
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token')
-    if (storedToken) {
-
-      const decodeToken: { role: string } = jwtDecode(storedToken)
-
-      if (decodeToken.role !== "HR") {
-        router.push('/signin')
-        return
-      }
+    if (status === "unauthenticated") {
+      router.push('/signin');
+    } else if (session?.user?.role !== 'HR') {
+      router.push('/signin');
     }
-
-
-  }, [])
+  }, [session, status, router]);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex flex-col items-center p-6">

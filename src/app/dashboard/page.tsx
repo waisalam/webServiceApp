@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 
 type HRDetail = {
   id: string;
@@ -36,24 +37,35 @@ type OrgDetail = {
 };
 
 export default function Dashboard() {
+  const { data: session, status } = useSession();
   const [step, setStep] = useState(1);
   const [showForm, setShowForm] = useState(false);
   const [HRdetails, setHRdetails] = useState<HRDetail[]>([]);
   const [showHRList, setShowHRList] = useState(false);
   const [getOrgDetails, setGetOrgDetails] = useState<OrgDetail[]>([]);
   const [showOrgList, setShowOrgList] = useState(false);
+  const [message, setMessage] = useState(""); // Add this with your other state declarations
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push('/signin');
+    } else if (session?.user?.role !== 'Admin') {
+      router.push('/signin');
+    }
+  }, [session, status, router]);
 
   useEffect(() => {
     const getHRdetails = async () => {
       try {
         const res = await axios.get("/api/admin/HRDetails");
-        if (res.status === 201) {
+        if (res.status === 200) {
           setHRdetails(res.data.getHrDetails);
         }
       } catch (err) {
-        console.error("Failed to fetch HRs", err);
+        console.error("Failed to fetch HRs:", err);
+        setHRdetails([]); 
       }
     };
 
@@ -68,9 +80,32 @@ export default function Dashboard() {
       }
     };
 
-    getHRdetails();
-    getOrgDetails();
-  }, []);
+    if (session?.user?.role === 'Admin') {
+      getHRdetails();
+      getOrgDetails();
+    }
+  }, [session]);
+
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        <div className="text-white">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!session || session.user.role !== 'Admin') {
+    return null;
+  }
+
+  const handleNoHRRedirect = () => {
+    if (session?.user?.role === 'Admin') {
+      setMessage("No HR personnel found. Redirecting to HR signup...");
+      setTimeout(() => {
+        router.push("/HRsignup");
+      }, 2000);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex flex-col items-center justify-start p-6">
@@ -81,7 +116,12 @@ export default function Dashboard() {
         </div>
         <Button
           className="bg-white/10 text-white hover:bg-white/20 border border-transparent hover:border-white transition-all duration-500 py-2 px-4 rounded-xl tracking-wide"
-          onClick={() => router.push("/HRsignup")}
+          onClick={(e) => {
+            e.preventDefault();
+            if (session?.user?.role === 'Admin') {
+              router.push("/HRsignup");
+            }
+          }}
         >
           Sign Up HR
         </Button>
@@ -125,23 +165,37 @@ export default function Dashboard() {
           )}
 
           {showHRList && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {HRdetails.map((hr) => (
-                <div
-                  key={hr.id}
-                  className="bg-gray-800 p-5 rounded-xl shadow-md border border-gray-700"
-                >
-                  <h3 className="text-xl font-semibold text-white mb-2">{hr.name}</h3>
-                  <p className="text-gray-400 text-sm">📧 {hr.email}</p>
-                  <p className="text-gray-400 text-sm">🧑‍💼 Role: {hr.role}</p>
-                  {hr.createdAt && (
-                    <p className="text-gray-500 text-xs mt-2">
-                      Joined on {new Date(hr.createdAt).toLocaleDateString()}
-                    </p>
-                  )}
+            <>
+              {HRdetails.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {HRdetails.map((hr) => (
+                    <div
+                      key={hr.id}
+                      className="bg-gray-800 p-5 rounded-xl shadow-md border border-gray-700"
+                    >
+                      <h3 className="text-xl font-semibold text-white mb-2">{hr.name}</h3>
+                      <p className="text-gray-400 text-sm">📧 {hr.email}</p>
+                      <p className="text-gray-400 text-sm">🧑‍💼 Role: {hr.role}</p>
+                      {hr.createdAt && (
+                        <p className="text-gray-500 text-xs mt-2">
+                          Joined on {new Date(hr.createdAt).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              ) : (
+                <div className="bg-gray-800 p-6 rounded-xl text-center">
+                  <p className="text-gray-300 mb-4">No HR personnel found in the system.</p>
+                  <Button
+                    className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300"
+                    onClick={handleNoHRRedirect}
+                  >
+                    Create HR Account
+                  </Button>
+                </div>
+              )}
+            </>
           )}
 
           {showOrgList && (
@@ -160,6 +214,18 @@ export default function Dashboard() {
                   </p>
                 </div>
               ))}
+            </div>
+          )}
+
+          {message && (
+            <div className="w-full max-w-md mx-auto mt-4">
+              <p className={`text-center p-4 rounded-lg ${
+                message.includes("Redirecting") 
+                  ? "bg-blue-500/20 text-blue-200"
+                  : "bg-red-500/20 text-red-200"
+              }`}>
+                {message}
+              </p>
             </div>
           )}
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import axios from "axios";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import {
   Card,
@@ -31,41 +31,38 @@ export default function SigninPage() {
     event.preventDefault();
     setLoading(true);
     setMessage("");
+
     try {
-     if(formData.role === "ADMIN") {
-      console.log("logging in as admin");
-      
-        const response = await axios.post("/api/admin/login", formData);
-     if(response.status === 201) {
-            setMessage(response.data.message);
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("role", formData.role);
-        router.push("/dashboard");
-        }
-      } else if (formData.role === "User") {
-        console.log("logging in as user");
-        const response = await axios.post("/api/users/login", formData);
-        if (response.status === 201) {
-          setMessage(response.data.message);
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("role", formData.role);
-        router.push("/user-dashboard");
-      }} else if(formData.role === 'HR'){
-        const res = await axios.post('/api/admin/hrlogin', formData)
-        if(res.status === 201){
-          const data = res.data
-          setMessage(data.message)
-          localStorage.setItem('token', data.token)
-          localStorage.setItem('role', formData.role)
-          router.push('/HRdashboard')
+      const result = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        role: formData.role,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setMessage("Invalid credentials");
+      } else {
+        // Redirect based on role
+        switch (formData.role) {
+          case "Admin":
+            router.push("/dashboard");
+            break;
+          case "HR":
+            router.push("/HRdashboard");
+            break;
+          case "Employee":
+            router.push("/employedashboard");
+            break;
+          default:
+            router.push("/dashboard");
         }
       }
-    } catch (err: any) {
-      setMessage(err.response?.data || "Login failed. Please try again.");
+    } catch (error) {
+      setMessage("An error occurred during sign in");
     }
     setLoading(false);
   };
-
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-6">
@@ -94,7 +91,7 @@ export default function SigninPage() {
                 I am logging in as
               </legend>
               <div className="grid grid-cols-2 gap-4 mt-2">
-                {["ADMIN", "HR", "User", "Developer"].map((r) => (
+                {["Admin", "HR", "Employee"].map((r) => (
                   <label
                     key={r}
                     className="flex items-center space-x-3 bg-gray-800/60 p-4 rounded-lg border border-gray-700 hover:border-white transition"
@@ -175,7 +172,7 @@ export default function SigninPage() {
         {message && (
           <p
             className={`px-10 pb-4 text-sm ${
-              message.toLowerCase().includes("fail")
+              message.toLowerCase().includes("fail") || message.toLowerCase().includes("invalid")
                 ? "text-red-500"
                 : "text-green-500"
             }`}

@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import {
   Card,
   CardHeader,
@@ -15,9 +17,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
-import { redirect } from "next/navigation";
 
 export default function SignupPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session?.user) {
+      router.push('/dashboard');
+    }
+  }, [session, router]);
+
   const [step, setStep] = useState<"email" | "verify" | "register">("email");
   const [formData, setFormData] = useState({
     name: "",
@@ -76,19 +86,28 @@ export default function SignupPage() {
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        role: "Admin" // Always send Admin as role
+        role: "Admin"
       });
       
       if (response.status === 201) {
-        setMessage("Account created successfully!");
-        // Use router for navigation instead of redirect
-        window.location.href = '/dashboard';
+        setMessage("Account created successfully! Redirecting to login...");
+        setTimeout(() => {
+          router.push('/signin');
+        }, 2000);
       }
     } catch (err: any) {
       setMessage(err.response?.data?.message || "Failed to create account.");
     }
     setLoading(false);
   };
+
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        <div className="text-white">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <main className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-gray-900 via-black to-gray-900">
