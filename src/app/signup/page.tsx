@@ -23,7 +23,7 @@ export default function SignupPage() {
     name: "",
     email: "",
     password: "",
-    role: "User",
+    role: "Admin", // Set default role to Admin
     code: "",
   });
   const [loading, setLoading] = useState(false);
@@ -38,11 +38,16 @@ export default function SignupPage() {
     setLoading(true);
     setMessage("");
     try {
-      await axios.post("/api/users/sendcode", { email: formData.email });
-      setStep("verify");
-      setMessage("Verification code sent to your email.");
+        console.log("Sending verification code to:", formData.email);
+        const response = await axios.post("/api/users/sendcode", { 
+            email: formData.email 
+        });
+        console.log("API Response:", response.data);
+        setStep("verify");
+        setMessage("Verification code sent to your email.");
     } catch (err: any) {
-      setMessage(err.response?.data || "Failed to send verification code.");
+        console.error("Error sending verification code:", err);
+        setMessage(err.response?.data?.error || "Failed to send verification code.");
     }
     setLoading(false);
   };
@@ -67,24 +72,20 @@ export default function SignupPage() {
     setLoading(true);
     setMessage("");
     try {
-      await axios.post("/api/users/register", {
+      const response = await axios.post("/api/users/register", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        role: formData.role,
+        role: "Admin" // Always send Admin as role
       });
-      setMessage("Account created successfully!");
-      redirect('/dashboard')
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        role: "User",
-        code: "",
-      });
-      setStep("email");
+      
+      if (response.status === 201) {
+        setMessage("Account created successfully!");
+        // Use router for navigation instead of redirect
+        window.location.href = '/dashboard';
+      }
     } catch (err: any) {
-      setMessage(err.response?.data || "Failed to create account.");
+      setMessage(err.response?.data?.message || "Failed to create account.");
     }
     setLoading(false);
   };
@@ -186,24 +187,6 @@ export default function SignupPage() {
                 onChange={handleChange}
                 className="bg-gray-800 text-white"
               />
-
-              <Label htmlFor="role" className="text-gray-300">
-                Role
-              </Label>
-              <select
-                id="role"
-                name="role"
-                value={formData.role}
-                onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, role: e.target.value }))
-                }
-                className="bg-gray-800 text-white rounded-md p-2 w-full"
-              >
-                <option value="User">User</option>
-                <option value="Admin">Admin</option>
-                <option value="HR">HR</option>
-                <option value="Developer">Developer</option>
-              </select>
 
               <Button
                 onClick={handleRegister}

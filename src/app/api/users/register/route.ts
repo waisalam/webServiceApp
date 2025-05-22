@@ -3,43 +3,77 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
-  const { name, email, password, role } = await req.json();
-
   try {
+    const { name, email, password } = await req.json();
+
+    // Validate input
+    if (!name || !email || !password) {
+      return new Response(
+        JSON.stringify({ message: "Missing required fields" }),
+        { status: 400 }
+      );
+    }
+
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
-   if(!existingUser){
-    return new Response('user not found', {status:400})
-   }
-   if(!existingUser.isVerified){
-    return new Response('email not verified', {status:400})
-   }
 
-   if(existingUser.password){
-    return new Response('user already registered', {status:401})
-   }
+    if (!existingUser) {
+      return new Response(
+        JSON.stringify({ message: "User not found" }),
+        { status: 400 }
+      );
+    }
 
-   if (role !== "User") {
-    return new Response("Invalid role", { status: 400 });
-  }
+    if (!existingUser.isVerified) {
+      return new Response(
+        JSON.stringify({ message: "Email not verified" }),
+        { status: 400 }
+      );
+    }
 
-    // Hash the password before storing it
+    if (existingUser.password) {
+      return new Response(
+        JSON.stringify({ message: "User already registered" }),
+        { status: 400 }
+      );
+    }
+
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-    // update a  user
 
-   const user = await prisma.user.update({
+    // Update user with name, password, and role
+    const updatedUser = await prisma.user.update({
       where: { email },
       data: {
-        name , password: hashedPassword, role
-      }
+        name,
+        password: hashedPassword,
+        role: "Admin", // Always set role as Admin
+      },
     });
 
     return new Response(
-      JSON.stringify({ message: "User registered successfully", user }),
-      { status: 201 }
+      JSON.stringify({
+        message: "User registered successfully",
+        user: {
+          id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          role: updatedUser.role,
+        },
+      }),
+      {
+        status: 201,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
   } catch (error) {
-    return new Response("User creation failed", { status: 500 });
+    console.error("Registration error:", error);
+    return new Response(
+      JSON.stringify({ message: "Registration failed" }),
+      { status: 500 }
+    );
   }
 }
