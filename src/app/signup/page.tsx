@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
+import { redirect } from "next/navigation";
 
 export default function SignupPage() {
   const [step, setStep] = useState<"email" | "verify" | "register">("email");
@@ -73,6 +74,7 @@ export default function SignupPage() {
         role: formData.role,
       });
       setMessage("Account created successfully!");
+      redirect('/dashboard')
       setFormData({
         name: "",
         email: "",

@@ -1,5 +1,5 @@
 import {prisma} from '@/lib/prisma'
-import { transporter } from '../register/nodemailer'
+import { transporter } from '@/lib/nodemailer'
 
 export async function POST(req:Request) {
     const {email} =await req.json()
@@ -24,7 +24,7 @@ if(existingUser){
     })
 }
 
-const sendEmail = await transporter.sendMail({
+ await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to:email,
     subject:"verify your email",
