@@ -108,14 +108,14 @@ export default function Dashboard() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex flex-col items-center justify-start p-6">
-      <header className="w-full flex justify-between items-center py-6 px-10 bg-black/40 border-b border-gray-700">
-        <div>
-          <h1 className="text-3xl text-white tracking-wide">Admin Dashboard</h1>
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex flex-col items-center justify-start p-4 sm:p-6">
+      <header className="w-full flex flex-col sm:flex-row justify-between items-center py-4 sm:py-6 px-4 sm:px-10 bg-black/40 border-b border-gray-700 gap-4 sm:gap-0">
+        <div className="text-center sm:text-left">
+          <h1 className="text-2xl sm:text-3xl text-white tracking-wide">Admin Dashboard</h1>
           <p className="text-gray-400">Manage HR, and Create organizations</p>
         </div>
         <Button
-          className="bg-white/10 text-white hover:bg-white/20 border border-transparent hover:border-white transition-all duration-500 py-2 px-4 rounded-xl tracking-wide"
+          className="w-full sm:w-auto bg-white/10 text-white hover:bg-white/20 border border-transparent hover:border-white transition-all duration-500 py-2 px-4 rounded-xl tracking-wide"
           onClick={(e) => {
             e.preventDefault();
             if (session?.user?.role === 'Admin') {
@@ -127,8 +127,8 @@ export default function Dashboard() {
         </Button>
       </header>
 
-      <section className="w-full flex flex-col md:flex-row mt-10 gap-8">
-        <div className="w-full md:w-1/4 flex flex-col gap-4">
+      <section className="w-full flex flex-col lg:flex-row mt-6 sm:mt-10 gap-4 sm:gap-8">
+        <div className="w-full lg:w-1/4 flex flex-col gap-4">
           <Button
             className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 py-3 px-6 rounded-lg"
             onClick={() => router.push("/createOrg")}
@@ -157,7 +157,7 @@ export default function Dashboard() {
           </Button>
         </div>
 
-        <div className="w-full md:w-3/4">
+        <div className="w-full lg:w-3/4">
           {showForm && (
             <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-full">
               {/* You can add your org creation form here */}
@@ -167,7 +167,7 @@ export default function Dashboard() {
           {showHRList && (
             <>
               {HRdetails.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   {HRdetails.map((hr) => (
                     <div
                       key={hr.id}
@@ -185,7 +185,7 @@ export default function Dashboard() {
                   ))}
                 </div>
               ) : (
-                <div className="bg-gray-800 p-6 rounded-xl text-center">
+                <div className="bg-gray-800 p-4 sm:p-6 rounded-xl text-center">
                   <p className="text-gray-300 mb-4">No HR personnel found in the system.</p>
                   <Button
                     className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300"
@@ -199,7 +199,7 @@ export default function Dashboard() {
           )}
 
           {showOrgList && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {getOrgDetails.map((org) => (
                 <div
                   key={org.id}

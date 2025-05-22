@@ -65,9 +65,9 @@ export default function SigninPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-6">
-      <Card className="w-full max-w-lg bg-black/50 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden border border-gray-700">
-        <CardHeader className="flex justify-between items-center bg-black/40 px-10 py-6 border-b border-gray-700">
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-4 sm:p-6">
+      <Card className="w-full max-w-lg bg-black/50 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-700">
+        <CardHeader className="flex flex-col sm:flex-row justify-between items-center bg-black/40 px-6 sm:px-10 py-6 border-b border-gray-700 gap-4 sm:gap-0">
           <div>
             <CardTitle className="text-3xl text-white tracking-wide">
               Welcome Back
@@ -83,14 +83,14 @@ export default function SigninPage() {
           </Link>
         </CardHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-8 px-10 py-8">
-          <CardContent className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 px-6 sm:px-10 py-6 sm:py-8">
+          <CardContent className="space-y-4 sm:space-y-6 p-0">
             {/* Role Selection */}
             <fieldset className="space-y-4">
               <legend className="text-gray-300 uppercase text-sm tracking-wider">
                 I am logging in as
               </legend>
-              <div className="grid grid-cols-2 gap-4 mt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-2">
                 {["Admin", "HR", "Employee"].map((r) => (
                   <label
                     key={r}
